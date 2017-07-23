@@ -1,5 +1,4 @@
 import cartolafc
-import json
 
 from models.cartola_models import Atleta
 
@@ -27,11 +26,15 @@ class CartolaFacade(object):
             print("User Pass:{}".format(us_pass))
 
             self._api = cartolafc.Api(email=us_name, password=us_pass,attempts=5)
-            _retorno = True
+            _retorno = (type(self._api)!=type(None))
         except:
             _retorno = False
 
         return _retorno
+
+    #obtém a identificação numérica da rodada atual
+    def get_mercado(self):
+        return self._api.mercado()
 
     #obtem lista de todos os atletas inscritos no cartola
     def get_atletas(self):
@@ -49,4 +52,4 @@ class CartolaFacade(object):
 
             lista.append(atleta)
 
-        return atleta
+        return lista
