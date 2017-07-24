@@ -19,6 +19,8 @@ def parse_parameters():
 
     if ( args.auth != None ):
         result['auth']=args.auth
+    else:
+        result['auth']='./../auth.k'
 
 
     return result
@@ -38,12 +40,12 @@ def main():
         #instancia classe facade do mongo
         mongo_facade = PyMongoFacade()
 
-        #pesquisa se os dados da rodada atual já existem no banco
-        mercado_rodada_atual = mongo_facade.get_rodada_object_id(mercado.rodada_atual)
+        #pesquisa se a rodada atual já está salva no mongo
+        rodada_existe = mongo_facade.rodada_exists(mercado.rodada_atual)
 
-        if (cache.cache['option']!='fu'):
-            #caso não existam dados salvos
-            if (type(mercado_rodada_atual) == None ) | (len(mercado_rodada_atual)==0) :
+        #se rodada já existir no mongo, só atualiza se FORCE UPDATE foi usado
+        if (rodada_existe):
+            if (cache.cache['option']=='fu'):
                 # obtém lista atualizada de atletas
                 lista = cartola_facade.get_atletas()
 

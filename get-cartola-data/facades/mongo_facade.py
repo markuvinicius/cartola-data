@@ -22,9 +22,10 @@ class PyMongoFacade(object):
 
         return result
 
-    def get_rodada_object_id(self,rodada):
+    def rodada_exists(self,rodada):
         document = self._db.mercado.find({'id_rodada': rodada})
-        return document[0]['_id']
+
+        return (len(list(document)) != 0 )
 
 
     def get_mercado_rodada(self,rodada):
