@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e59acb7-ea1a-4383-816f-ca9883671f33" name="Default" comment="">
+    <list default="true" id="2e59acb7-ea1a-4383-816f-ca9883671f33" name="Default" comment="teste">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/test-cartola-api-checkpoint.ipynb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/notebooks/test-cartola-api.ipynb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/get-cartola-data/facades/cartola_facade.py" afterPath="$PROJECT_DIR$/get-cartola-data/facades/cartola_facade.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,8 +19,8 @@
       <file leaf-file-name="get_cartola_data.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/get-cartola-data/get_cartola_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -32,9 +33,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="284">
               <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#16#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -240,11 +239,19 @@
       <option name="project" value="LOCAL" />
       <updated>1500859186649</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="adicionado tratamento de logs com elasticsearch">
+      <created>1501298215148</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1501298215148</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -254,7 +261,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3997344" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3997344" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -290,10 +297,13 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="(cartola_facade.py) - Adicionados métodos para obtenção e tratamento da situação do mercado&#10;&#10;(mongo_facade.py) - Adicionados métodos para persistência dos dados no mongo e pesquisa&#10;&#10;(cache.py) - Criada classe helper para cachear os parâmetros de entrada do programa&#10;&#10;(get_cartola_data.py) - Melhorias gerais na classe" />
     <MESSAGE value="melhorado controle de sobreposição de rodadas." />
-    <option name="LAST_COMMIT_MESSAGE" value="melhorado controle de sobreposição de rodadas." />
+    <MESSAGE value="adicionado tratamento de logs com elasticsearch" />
+    <MESSAGE value="teste" />
+    <option name="LAST_COMMIT_MESSAGE" value="teste" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -303,11 +313,6 @@
           <url>file://$PROJECT_DIR$/get-cartola-data/facades/cartola_facade.py</url>
           <line>17</line>
           <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/get-cartola-data/get_cartola_data.py</url>
-          <line>33</line>
-          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -386,9 +391,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="31" column="68" lean-forward="false" selection-start-line="31" selection-start-column="68" selection-end-line="31" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -406,9 +409,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
           <caret line="48" column="40" lean-forward="false" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -468,9 +469,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
           <caret line="48" column="40" lean-forward="false" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -514,9 +513,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
           <caret line="49" column="40" lean-forward="false" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -567,9 +564,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -688,16 +683,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
           <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/get-cartola-data/get_cartola_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        <state relative-caret-position="255">
+          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
