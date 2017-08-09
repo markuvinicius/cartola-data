@@ -25,7 +25,8 @@ class PyMongoFacade(object):
     def rodada_exists(self,rodada):
         document = self._db.mercado.find({'id_rodada': rodada})
 
-        return (len(list(document)) != 0 )
+
+        return ( document.count() > 0 )
 
 
     def get_mercado_rodada(self,rodada):
