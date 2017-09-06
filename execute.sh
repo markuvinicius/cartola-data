@@ -3,7 +3,10 @@
 
 echo '----------iniciando serviços--------------'
 echo '----[INICIANDO MONGODB]----'
+
+#### iniciando serviços mongodb via yum 
 brew services start mongodb
+
 echo '----[INICIANDO ELASTICSEARCH]----'
 brew services start elasticsearch
 
