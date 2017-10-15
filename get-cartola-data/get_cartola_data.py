@@ -10,6 +10,7 @@ def parse_parameters():
 
     parser.add_argument('-option',  action='store', dest='option', help='Opcoes {fu:force_update}')
     parser.add_argument('-auth', action='store',dest='auth', help='Path do arquivo de autenticação')
+    parser.add_argument('-elk' , action='store',dest='elk', help='Define uso do ElasticSearch')
 
     args = parser.parse_args()
     result = {}
@@ -22,6 +23,10 @@ def parse_parameters():
     else:
         result['auth']='./../auth.k'
 
+    if (args.elk != None ):
+        result['elk'] = True
+    else:
+        result['elk'] = False
 
     return result
 
@@ -31,7 +36,8 @@ def main():
     cache = MyCache(parse_parameters())
 
     #instancia classe facade do cartola
-    cartola_facade = CartolaFacade(cache.cache['auth'])
+    cartola_facade = CartolaFacade(cache.cache['auth'],
+                                   cache.cache['elk'])
 
     if cartola_facade.autenticate():
         #obtém dados do mercado

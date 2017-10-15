@@ -13,11 +13,12 @@ class CartolaFacade(object):
     _api  = None
     _es   = None
     _doc  = None
+    _elk  = None
 
-    def __init__(self, path):
+    def __init__(self, path , elk):
         self._path = path
-        self._es = Elasticsearch()
-        self._es.indices.create(index='cartola_api_index', ignore=400)
+        self._elk = elk
+
         # documento de log (elasticsearch)
         self._doc = {
             'class': str(type(self)),
@@ -26,6 +27,12 @@ class CartolaFacade(object):
             'step': None,
             'TYPE': None
         }
+
+        #conecta ao elasticsearch apenas se o parametro passado for diferente de none no argumento elk
+        if (self._elk ):
+            self._es = Elasticsearch()
+            self._es.indices.create(index='cartola_api_index', ignore=400)
+
 
     # AUTHENTICATION (OAuth)
     def autenticate(self):
@@ -43,14 +50,18 @@ class CartolaFacade(object):
             #registra o log de sucesso na leitura do arquivo
             self._doc['step'] = 'Credenciais de autenticação carregadas do arquivo'
             self._doc['TYPE'] = 'INFO'
-            self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
+
+            if (self._elk):
+                self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
         except IOError as inst:
 
             #registra log de erro na leitura do arquivo
             self._doc['step'] = "I/O error({}):".format(inst)
             self._doc['TYPE'] = 'ERROR'
             self._doc['timestamp'] = datetime.now()
-            self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
+
+            if (self._elk):
+                self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
 
         try:
             us_name = ak[0].split("\n")[0]
@@ -60,14 +71,19 @@ class CartolaFacade(object):
             self._doc['step'] = 'Autenticando na API do cartola'
             self._doc['TYPE'] = 'INFO'
             self._doc['timestamp'] = datetime.now()
-            self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
+
+            if (self._elk):
+                self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
+
 
             self._api = cartolafc.Api(email=us_name, password=us_pass,attempts=5)
 
             ##### Registra o sucesso na autenticação #####
             self._doc['step'] = 'Autenticado com sucesso na API do Cartola'
             self._doc['timestamp'] = datetime.now()
-            self._es.index(index="cartola_api_index", doc_type="test-type",  body=self._doc)
+
+            if (self._elk):
+                self._es.index(index="cartola_api_index", doc_type="test-type",  body=self._doc)
 
             _retorno = (type(self._api)!=type(None))
         except CartolaFCError as erro:
@@ -76,7 +92,9 @@ class CartolaFacade(object):
             self._doc['step'] = 'Erro ao autenticar na API cartola: {}'.format(erro)
             self._doc['TYPE'] = 'ERROR'
             self._doc['timestamp'] = datetime.now()
-            self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
+
+            if (self._elk):
+                self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
 
             _retorno = False
         return _retorno
@@ -88,7 +106,9 @@ class CartolaFacade(object):
         self._doc['timestamp']=datetime.now()
         self._doc['TYPE']='INFO'
         self._doc['step'] = 'Obtendo dados do mercado'
-        self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
+
+        if (self._elk):
+            self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
 
         mercado = None
         try:
@@ -99,7 +119,9 @@ class CartolaFacade(object):
             self._doc['step'] = 'Erro ao obter mercado: {}'.format(erro)
             self._doc['TYPE'] = 'ERROR'
             self._doc['timestamp'] = datetime.now()
-            self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
+
+            if (self._elk):
+                self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
 
         return mercado
 
@@ -112,7 +134,8 @@ class CartolaFacade(object):
         self._doc['timestamp'] = datetime.now()
         self._doc['TYPE'] = 'INFO'
         self._doc['step'] = 'Obtendo atletas'
-        self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
+        if (self._elk):
+            self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
 
         lista = []
         try:
@@ -123,7 +146,9 @@ class CartolaFacade(object):
             self._doc['timestamp'] = datetime.now()
             self._doc['TYPE'] = 'INFO'
             self._doc['step'] = 'Atletas obtidos: {}'.format( len(atletas) )
-            self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
+
+            if (self._elk):
+                self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
 
 
             for a in atletas:
@@ -142,6 +167,8 @@ class CartolaFacade(object):
             self._doc['timestamp'] = datetime.now()
             self._doc['TYPE'] = 'ERROR'
             self._doc['step'] = 'Erro ao obter atletas: {}'.format(error)
-            self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
+
+            if (self._elk):
+                self._es.index(index="cartola_api_index", doc_type="test-type", body=self._doc)
 
         return lista
